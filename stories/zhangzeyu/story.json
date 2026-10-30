@@ -3,7 +3,7 @@
   "id": "zhangzeyu-phone-v1",
   "title": "张泽禹的手机",
   "description": "张泽禹视角的 FoundPhone 故事初版框架：微信互动、备忘录与朋友圈。",
-  "revision": 2,
+  "revision": 3,
   "phone": {
     "owner": "张泽禹",
     "date": "2028-03-12",
@@ -25,37 +25,16 @@
     "settings"
   ],
   "contacts": [
-    {
-      "id": "zhangji",
-      "name": "张极",
-      "phone": "",
-      "avatar": "",
-      "bio": "丈夫"
-    },
-    {
-      "id": "zuohang",
-      "name": "左航",
-      "phone": "",
-      "avatar": "",
-      "bio": "朋友"
-    },
-    {
-      "id": "zhangjunhao",
-      "name": "张峻豪",
-      "phone": "",
-      "avatar": "",
-      "bio": "朋友"
-    }
+    { "id": "zhangji", "name": "张极", "phone": "", "avatar": "", "bio": "丈夫" },
+    { "id": "zuohang", "name": "左航", "phone": "", "avatar": "", "bio": "朋友" },
+    { "id": "zhangjunhao", "name": "张峻豪", "phone": "", "avatar": "", "bio": "朋友" }
   ],
   "chats": [
     {
       "id": "chat-zhangji",
       "app": "wechat",
       "title": "张极",
-      "participants": [
-        "owner",
-        "zhangji"
-      ],
+      "participants": ["owner", "zhangji"],
       "messages": [
         {
           "id": "wx-zj-001",
@@ -149,15 +128,11 @@
         "kind": "post",
         "folder": "朋友圈",
         "time": "17:32",
-        "meta": {
-          "section": "朋友圈"
-        }
+        "meta": { "section": "朋友圈" }
       }
     ]
   },
-  "variables": {
-    "zhangji_reply_choice": ""
-  },
+  "variables": { "zhangji_reply_choice": "" },
   "events": [
     {
       "id": "event-zj-after-old-sausage",
@@ -166,16 +141,8 @@
       "event": "read",
       "target": "wx-zj-sausage-old",
       "actions": [
-        {
-          "type": "unlock",
-          "key": "wx-zj-sausage-new",
-          "value": true
-        },
-        {
-          "type": "notification",
-          "key": "wechat",
-          "value": "张极发来一张图片"
-        }
+        { "type": "unlock", "key": "wx-zj-sausage-new", "value": true },
+        { "type": "notification", "key": "wechat", "value": "张极发来一张图片" }
       ],
       "next": [],
       "once": true
@@ -187,9 +154,7 @@
       "event": "read",
       "target": "wx-zj-sausage-new",
       "actions": [],
-      "next": [
-        "choice-zj-sausage-reply"
-      ],
+      "next": ["choice-zj-sausage-reply"],
       "once": true
     },
     {
@@ -197,32 +162,16 @@
       "label": "回复张极",
       "type": "choice",
       "actions": [],
-      "next": [
-        "choice-zj-a",
-        "choice-zj-b",
-        "choice-zj-c"
-      ]
+      "next": ["choice-zj-a", "choice-zj-b", "choice-zj-c"]
     },
     {
       "id": "choice-zj-a",
       "label": "咋只买两根，我们仨谁吃不上？",
       "type": "action",
       "actions": [
-        {
-          "type": "variable",
-          "key": "zhangji_reply_choice",
-          "value": "A"
-        },
-        {
-          "type": "unlock",
-          "key": "wx-zj-choice-a-outgoing",
-          "value": true
-        },
-        {
-          "type": "unlock",
-          "key": "wx-zj-reply-a",
-          "value": true
-        }
+        { "type": "variable", "key": "zhangji_reply_choice", "value": "A" },
+        { "type": "unlock", "key": "wx-zj-choice-a-outgoing", "value": true },
+        { "type": "unlock", "key": "wx-zj-reply-a", "value": true }
       ],
       "next": []
     },
@@ -231,21 +180,9 @@
       "label": "好的，快回来",
       "type": "action",
       "actions": [
-        {
-          "type": "variable",
-          "key": "zhangji_reply_choice",
-          "value": "B"
-        },
-        {
-          "type": "unlock",
-          "key": "wx-zj-choice-b-outgoing",
-          "value": true
-        },
-        {
-          "type": "unlock",
-          "key": "wx-zj-reply-b",
-          "value": true
-        }
+        { "type": "variable", "key": "zhangji_reply_choice", "value": "B" },
+        { "type": "unlock", "key": "wx-zj-choice-b-outgoing", "value": true },
+        { "type": "unlock", "key": "wx-zj-reply-b", "value": true }
       ],
       "next": []
     },
@@ -254,14 +191,85 @@
       "label": "不回复",
       "type": "action",
       "actions": [
-        {
-          "type": "variable",
-          "key": "zhangji_reply_choice",
-          "value": "C"
-        }
+        { "type": "variable", "key": "zhangji_reply_choice", "value": "C" }
       ],
+      "next": []
+    },
+    {
+      "id": "test-ending-a",
+      "label": "TEST_A_OK",
+      "type": "ending",
+      "event": "testCheckpointA",
+      "conditions": [
+        { "key": "zhangji_reply_choice", "op": "eq", "value": "A" }
+      ],
+      "actions": [],
+      "next": []
+    },
+    {
+      "id": "test-ending-b",
+      "label": "TEST_B_OK",
+      "type": "ending",
+      "event": "testCheckpointB",
+      "conditions": [
+        { "key": "zhangji_reply_choice", "op": "eq", "value": "B" }
+      ],
+      "actions": [],
+      "next": []
+    },
+    {
+      "id": "test-ending-c",
+      "label": "TEST_C_OK",
+      "type": "ending",
+      "event": "testCheckpointC",
+      "conditions": [
+        { "key": "zhangji_reply_choice", "op": "eq", "value": "C" }
+      ],
+      "actions": [],
       "next": []
     }
   ],
-  "tests": []
+  "tests": [
+    {
+      "name": "张极互动-A分支",
+      "steps": [
+        { "event": "read", "target": "wx-zj-sausage-old" },
+        { "event": "read", "target": "wx-zj-sausage-new" },
+        { "choose": "choice-zj-a" },
+        { "event": "testCheckpointA", "target": "" }
+      ],
+      "ending": "TEST_A_OK",
+      "expectUnlocked": [
+        "wx-zj-sausage-new",
+        "wx-zj-choice-a-outgoing",
+        "wx-zj-reply-a"
+      ]
+    },
+    {
+      "name": "张极互动-B分支",
+      "steps": [
+        { "event": "read", "target": "wx-zj-sausage-old" },
+        { "event": "read", "target": "wx-zj-sausage-new" },
+        { "choose": "choice-zj-b" },
+        { "event": "testCheckpointB", "target": "" }
+      ],
+      "ending": "TEST_B_OK",
+      "expectUnlocked": [
+        "wx-zj-sausage-new",
+        "wx-zj-choice-b-outgoing",
+        "wx-zj-reply-b"
+      ]
+    },
+    {
+      "name": "张极互动-C分支",
+      "steps": [
+        { "event": "read", "target": "wx-zj-sausage-old" },
+        { "event": "read", "target": "wx-zj-sausage-new" },
+        { "choose": "choice-zj-c" },
+        { "event": "testCheckpointC", "target": "" }
+      ],
+      "ending": "TEST_C_OK",
+      "expectUnlocked": ["wx-zj-sausage-new"]
+    }
+  ]
 }
