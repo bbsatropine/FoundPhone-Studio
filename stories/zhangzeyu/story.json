@@ -3,7 +3,7 @@
   "id": "zhangzeyu-phone-v1",
   "title": "张泽禹的手机",
   "description": "张泽禹视角的 FoundPhone 故事初版框架：微信互动、备忘录与朋友圈。",
-  "revision": 3,
+  "revision": 4,
   "phone": {
     "owner": "张泽禹",
     "date": "2028-03-12",
@@ -81,7 +81,7 @@
           "id": "wx-zj-reply-a",
           "title": "",
           "body": "乖乖已经吃了两根了",
-          "time": "17:41",
+          "time": "17:42",
           "senderId": "zhangji",
           "hidden": true
         },
@@ -98,7 +98,7 @@
           "id": "wx-zj-reply-b",
           "title": "",
           "body": "爱你老婆",
-          "time": "17:41",
+          "time": "17:42",
           "senderId": "zhangji",
           "hidden": true
         }
@@ -122,7 +122,7 @@
     "wechat": [
       {
         "id": "wechat-moment-zhangji-001",
-        "title": "张极",
+        "title": "朋友圈动态",
         "body": "女儿会吃! 和有人一模一样，淀粉肠两根打底",
         "sender": "张极",
         "kind": "post",
