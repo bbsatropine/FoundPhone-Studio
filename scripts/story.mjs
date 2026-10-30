@@ -86,10 +86,11 @@ try {
     "/src/story-engine/compiler.ts",
   );
   const { story, work } = compileStory(raw);
+  let testStory;
   if (mode === "test" || mode === "build") {
-    const { testStory } = await server.ssrLoadModule(
+    ({ testStory } = await server.ssrLoadModule(
       "/src/story-engine/testStory.ts",
-    );
+    ));
     const errors = testStory(story, work);
     if (errors.length) throw Error(errors.join("\n"));
   }
@@ -117,6 +118,18 @@ try {
       await writeFile(
         "public/test-work.json",
         JSON.stringify(preview, null, 2) + "\n",
+      );
+    }
+    {
+      const zhangzeyu = compileStory(
+        JSON.parse(await readFile("stories/zhangzeyu/story.json", "utf8")),
+      );
+      const errors = testStory(zhangzeyu.story, zhangzeyu.work);
+      if (errors.length)
+        throw Error("stories/zhangzeyu/story.json: " + errors.join("\n"));
+      await writeFile(
+        "public/zhangzeyu-work.json",
+        JSON.stringify(zhangzeyu.work, null, 2) + "\n",
       );
     }
   } else if (!["validate", "test"].includes(mode))
