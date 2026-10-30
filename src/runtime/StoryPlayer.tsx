@@ -9,14 +9,16 @@ function StoryPlayer() {
     [error, setError] = useState("");
   useEffect(() => {
     const abort = new AbortController();
-    fetch(
-      new URLSearchParams(location.search).get("preview") === "test"
-        ? "./test-work.json"
-        : new URLSearchParams(location.search).get("template") === "blank"
-          ? "./blank-work.json"
-          : "./work.json",
-      { signal: abort.signal },
-    )
+    const params = new URLSearchParams(location.search);
+    const storyFile =
+      params.get("story") === "zhangzeyu"
+        ? "./zhangzeyu-work.json"
+        : params.get("preview") === "test"
+          ? "./test-work.json"
+          : params.get("template") === "blank"
+            ? "./blank-work.json"
+            : "./work.json";
+    fetch(storyFile, { signal: abort.signal })
       .then((r) => {
         if (!r.ok) throw Error("缺少作品文件，请运行 npm run story:build");
         return r.json();
