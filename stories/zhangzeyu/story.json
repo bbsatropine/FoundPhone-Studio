@@ -1,0 +1,229 @@
+{
+  "scriptVersion": 1,
+  "id": "zhangzeyu-phone-v1",
+  "title": "张泽禹的手机",
+  "description": "张泽禹视角的 FoundPhone 故事初版框架：微信互动、备忘录与朋友圈。",
+  "revision": 1,
+  "phone": {
+    "owner": "张泽禹",
+    "date": "2028-03-12",
+    "time": "17:40",
+    "battery": 86,
+    "network": "5G",
+    "wallpaper": "apple-wwdc26",
+    "notifications": true
+  },
+  "installedApps": [
+    "appstore",
+    "wechat",
+    "phone",
+    "messages",
+    "contacts",
+    "photos",
+    "notes",
+    "safari",
+    "settings"
+  ],
+  "contacts": [
+    {
+      "id": "zhangji",
+      "name": "张极",
+      "phone": "",
+      "avatar": "",
+      "bio": "丈夫"
+    },
+    {
+      "id": "zuohang",
+      "name": "左航",
+      "phone": "",
+      "avatar": "",
+      "bio": "朋友"
+    },
+    {
+      "id": "zhangjunhao",
+      "name": "张峻豪",
+      "phone": "",
+      "avatar": "",
+      "bio": "朋友"
+    }
+  ],
+  "chats": [
+    {
+      "id": "chat-zhangji",
+      "app": "wechat",
+      "title": "张极",
+      "participants": [
+        "owner",
+        "zhangji"
+      ],
+      "messages": [
+        {
+          "id": "wx-zj-001",
+          "title": "",
+          "body": "今天回来吃饭吗，我接乖乖顺便买点凉菜回来再做饭",
+          "time": "16:52",
+          "senderId": "zhangji"
+        },
+        {
+          "id": "wx-zj-002",
+          "title": "",
+          "body": "回的，记得给我买两根淀粉肠",
+          "time": "16:54",
+          "senderId": "owner",
+          "outgoing": true
+        },
+        {
+          "id": "wx-zj-sausage-old",
+          "title": "",
+          "body": "【淀粉肠图片｜素材待补】",
+          "time": "16:55",
+          "senderId": "zhangji",
+          "kind": "image"
+        },
+        {
+          "id": "wx-zj-sausage-new",
+          "title": "",
+          "body": "【淀粉肠图片｜新消息，素材待补】",
+          "time": "17:40",
+          "senderId": "zhangji",
+          "kind": "image",
+          "hidden": true
+        },
+        {
+          "id": "wx-zj-reply-a",
+          "title": "",
+          "body": "乖乖已经吃了两根了",
+          "time": "17:41",
+          "senderId": "zhangji",
+          "hidden": true
+        },
+        {
+          "id": "wx-zj-reply-b",
+          "title": "",
+          "body": "爱你老婆",
+          "time": "17:41",
+          "senderId": "zhangji",
+          "hidden": true
+        }
+      ]
+    }
+  ],
+  "content": {
+    "notes": [
+      {
+        "id": "note-pinned-anniversary",
+        "title": "置顶",
+        "body": "结婚纪念日 2028.3.12\n\n✓ 恋爱100天、200天、250天、300天\n✓ 亲嘴100天、200天、250天、300天\n✓ Bed100天、200天、250天、300天",
+        "kind": "note",
+        "favorite": true,
+        "meta": {
+          "pinned": "true",
+          "authorNote": "原稿中的删除线项目在初版框架中以完成标记表示；后续可按实际UI效果调整。"
+        }
+      }
+    ],
+    "wechat": [
+      {
+        "id": "wechat-moment-zhangji-001",
+        "title": "张极",
+        "body": "女儿会吃! 和有人一模一样，淀粉肠两根打底",
+        "sender": "张极",
+        "kind": "post",
+        "folder": "朋友圈",
+        "time": "17:32",
+        "meta": {
+          "section": "朋友圈"
+        }
+      }
+    ]
+  },
+  "variables": {
+    "zhangji_reply_choice": ""
+  },
+  "events": [
+    {
+      "id": "event-zj-after-old-sausage",
+      "label": "看完张极之前发来的淀粉肠图片",
+      "type": "event",
+      "event": "read",
+      "target": "wx-zj-sausage-old",
+      "actions": [
+        {
+          "type": "unlock",
+          "key": "wx-zj-sausage-new",
+          "value": true
+        },
+        {
+          "type": "notification",
+          "key": "wechat",
+          "value": "张极发来一张图片"
+        }
+      ],
+      "next": [
+        "choice-zj-sausage-reply"
+      ],
+      "once": true
+    },
+    {
+      "id": "choice-zj-sausage-reply",
+      "label": "回复张极",
+      "type": "choice",
+      "actions": [],
+      "next": [
+        "choice-zj-a",
+        "choice-zj-b",
+        "choice-zj-c"
+      ]
+    },
+    {
+      "id": "choice-zj-a",
+      "label": "咋只买两根，我们仨谁吃不上？",
+      "type": "action",
+      "actions": [
+        {
+          "type": "variable",
+          "key": "zhangji_reply_choice",
+          "value": "A"
+        },
+        {
+          "type": "unlock",
+          "key": "wx-zj-reply-a",
+          "value": true
+        }
+      ],
+      "next": []
+    },
+    {
+      "id": "choice-zj-b",
+      "label": "好的，快回来",
+      "type": "action",
+      "actions": [
+        {
+          "type": "variable",
+          "key": "zhangji_reply_choice",
+          "value": "B"
+        },
+        {
+          "type": "unlock",
+          "key": "wx-zj-reply-b",
+          "value": true
+        }
+      ],
+      "next": []
+    },
+    {
+      "id": "choice-zj-c",
+      "label": "不回复",
+      "type": "action",
+      "actions": [
+        {
+          "type": "variable",
+          "key": "zhangji_reply_choice",
+          "value": "C"
+        }
+      ],
+      "next": []
+    }
+  ],
+  "tests": []
+}
