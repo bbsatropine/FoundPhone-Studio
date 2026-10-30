@@ -3,7 +3,7 @@
   "id": "zhangzeyu-phone-v1",
   "title": "张泽禹的手机",
   "description": "张泽禹视角的 FoundPhone 故事初版框架：微信互动、备忘录与朋友圈。",
-  "revision": 1,
+  "revision": 2,
   "phone": {
     "owner": "张泽禹",
     "date": "2028-03-12",
@@ -74,7 +74,7 @@
         },
         {
           "id": "wx-zj-sausage-old",
-          "title": "",
+          "title": "淀粉肠",
           "body": "【淀粉肠图片｜素材待补】",
           "time": "16:55",
           "senderId": "zhangji",
@@ -82,11 +82,20 @@
         },
         {
           "id": "wx-zj-sausage-new",
-          "title": "",
+          "title": "淀粉肠",
           "body": "【淀粉肠图片｜新消息，素材待补】",
           "time": "17:40",
           "senderId": "zhangji",
           "kind": "image",
+          "hidden": true
+        },
+        {
+          "id": "wx-zj-choice-a-outgoing",
+          "title": "",
+          "body": "咋只买两根，我们仨谁吃不上？",
+          "time": "17:41",
+          "senderId": "owner",
+          "outgoing": true,
           "hidden": true
         },
         {
@@ -95,6 +104,15 @@
           "body": "乖乖已经吃了两根了",
           "time": "17:41",
           "senderId": "zhangji",
+          "hidden": true
+        },
+        {
+          "id": "wx-zj-choice-b-outgoing",
+          "title": "",
+          "body": "好的，快回来",
+          "time": "17:41",
+          "senderId": "owner",
+          "outgoing": true,
           "hidden": true
         },
         {
@@ -159,6 +177,16 @@
           "value": "张极发来一张图片"
         }
       ],
+      "next": [],
+      "once": true
+    },
+    {
+      "id": "event-zj-open-new-sausage",
+      "label": "查看张极新发来的淀粉肠图片",
+      "type": "event",
+      "event": "read",
+      "target": "wx-zj-sausage-new",
+      "actions": [],
       "next": [
         "choice-zj-sausage-reply"
       ],
@@ -187,6 +215,11 @@
         },
         {
           "type": "unlock",
+          "key": "wx-zj-choice-a-outgoing",
+          "value": true
+        },
+        {
+          "type": "unlock",
           "key": "wx-zj-reply-a",
           "value": true
         }
@@ -202,6 +235,11 @@
           "type": "variable",
           "key": "zhangji_reply_choice",
           "value": "B"
+        },
+        {
+          "type": "unlock",
+          "key": "wx-zj-choice-b-outgoing",
+          "value": true
         },
         {
           "type": "unlock",
